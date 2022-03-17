@@ -4,7 +4,7 @@
 Implementation for data structures related to networks or graphs.
 
 1. Head-Tail Pointer for Sparse Matrix Calculation
-2. Adjacency Matrix(not implemented yet)
+2. Adjacency List(not implemented yet)
 
 ## Usage
 ### 1. Head-Tail Pointer

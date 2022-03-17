@@ -4,7 +4,7 @@
 
 int main() {
     //example matrix & vector
-    matrix A;
+    std::vector<std::vector<int>> A;
 
     A.push_back({2,0,-3,0,0,-5,0,4,0,0});
     A.push_back({0,3,2,1,0,-3,0,0,4,2});
@@ -14,15 +14,13 @@ int main() {
 
     std::vector<int> x = {1,0,2,0,1,0,0,1,5,1};
 
-    HTPtr p = HTPtr(&A);
+    HTPtr<int> p = HTPtr<int>(&A);
     // print test code
     p.pprint();
-
     std::cout << std::endl;
-
     // matrix multiplication test code
     for(auto i : p.matmul(x)){
-        std::cout << i << std::endl;
+        std::cout << i << " ";
     }
 
     return 0;
