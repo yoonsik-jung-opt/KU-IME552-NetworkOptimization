@@ -9,29 +9,30 @@
 #include <iostream>
 #include <vector>
 
+template <typename T>
 class Data{
 
 public:
-    Data(Data* next, int col, int value) : next(next), col(col), value(value){}
+    Data(Data* next, int col, T value) : next(next), col(col), value(value){}
     Data* next;
     int col;
-    int value;
+    T value;
 };
 
-typedef Data* ptr_type;
 typedef std::vector<std::vector<int>> matrix;
 
 // head-tail pointer wrapper class
+
 class HTPtr{
 private:
     int num_of_row;
-    int num_of_col;
-    std::vector<Data*> ptr;
+    std::vector<Data<int>*> ptr;
 
 public:
-    HTPtr(matrix A);
-    std::vector<Data*> getPtr();
+
+    HTPtr(const matrix* A);
+    std::vector<Data<int>*> getPtr();
     void printArc(int node_idx);
     void pprint();
-    std::vector<int> matmul(const std::vector<int> x);
+    std::vector<int> matmul(std::vector<int> x);
 };

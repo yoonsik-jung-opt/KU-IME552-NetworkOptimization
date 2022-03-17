@@ -7,7 +7,7 @@ Implementation for data structures related to networks or graphs.
 2. Adjacency Matrix(not implemented yet)
 
 ## Usage
-###1. Head-Tail Pointer
+### 1. Head-Tail Pointer
 
 ```c++
 //example matrix A and vector x
