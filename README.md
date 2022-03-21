@@ -3,12 +3,12 @@
 ## Description
 Implementation for data structures related to networks or graphs.
 
-1. Head-Tail Pointer for Sparse Matrix Calculation
-2. Adjacency List(not implemented yet)
+1. Head-Tail Pointer for Sparse Matrix Calculation(head_tail_pointer.h)
+2. Adjacency List (adj_list.h)
 
 ## Usage
 ### 1. Head-Tail Pointer
-
+main.cpp
 ```c++
 //example matrix A and vector x
 std::vector<std::vector<int>> A;
@@ -29,6 +29,26 @@ p.pprint();
 auto res = p.matmul(x) // it returns vector
 
 ```
+### 2. Adjacency List
+test_edges.txt
+```c++
+1 3
+2 3
+1 4
+```
+```c++
+// load edges
+std::vector<std::tuple<int, int>> edges = readEdges("test_edges.txt", 3);
+
+AdjacencyList adj = AdjacencyList();
+// It'll be deprecated and replaced by the constructor.
+for(auto i : edges){
+    adj.addDirectedEdge(std::get<0>(i), std::get<1>(i));
+}
+// test code
+adj.printEdges();
+```
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
