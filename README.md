@@ -1,14 +1,14 @@
 # IME552 - Network Optimization
 
 ## Description
-Implementation for data structures related to networks or graphs.
+Implementation of data structures and algorithms related to the networks or graphs.
 
 1. Head-Tail Pointer for Sparse Matrix Calculation(head_tail_pointer.h)
 2. Adjacency List (adj_list.h)
+3. Graph Search Algorithm
 
 ## Usage
 ### 1. Head-Tail Pointer
-main.cpp
 ```c++
 //example matrix A and vector x
 std::vector<std::vector<int>> A;
