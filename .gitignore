@@ -153,4 +153,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# data
+graph500-scale18-ef16_adj.edges.txt
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,c++,clion+all
