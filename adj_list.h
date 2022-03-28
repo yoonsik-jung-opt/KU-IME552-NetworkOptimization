@@ -5,7 +5,6 @@
 #ifndef NETWORK_OPTIMIZATION_ADJ_LIST_H
 #define NETWORK_OPTIMIZATION_ADJ_LIST_H
 
-#endif //NETWORK_OPTIMIZATION_ADJ_LIST_H
 
 #include <vector>
 #include <tuple>
@@ -30,9 +29,8 @@ class Node {
 public:
     int nodeId;
     int capacity;
+    int order;
     Edge *next;
-
-
 };
 
 
@@ -138,7 +136,7 @@ public:
 
     void printNodes() {
         for (auto i: nodes) {
-            std::cout << (*i).nodeId << std::endl;
+            std::cout << (*i).nodeId << "'s t_order :" << (*i).order << std::endl;
         }
     }
 
@@ -154,4 +152,62 @@ public:
         }
     }
 
+    void topologicalOrdering() {
+        std::vector<int> bag; // node container that already ordered
+        int CUR = 1; // topological ordering starts from 1
+        size_t n_size = nodes.size();
+
+        for (int i = 0; i < n_size; i++) {
+            for (auto n: nodes) {
+                if (n->order != 0)
+                    continue;
+
+                if (checkIndegree(n->nodeId)) { // indegree exists
+                    continue;
+                } else { // indegree not exists
+                    n->order = CUR;
+                    n->next = NULL; // temporally handling method required
+                    bag.push_back(n->nodeId);
+                    CUR++;
+                }
+            }
+
+            if (n_size + 1 == CUR)
+                break;
+        }
+
+        if (bag.size() == n_size) {
+            std::cout << "Topological Ordering Complete" << std::endl;
+        } else {
+            std::cout << "Topological Ordering Failed : " << "# of unordered nodes " << n_size - bag.size()
+                      << std::endl;
+        }
+
+        printNodes();
+    }
+
+    bool checkIndegree(int nodeId) {
+        bool isExist = false;
+        for (auto n: nodes) {
+            Edge *temp = n->next;
+            while (temp != NULL) {
+                if (temp->head == nodeId) {
+                    isExist = true;
+                    break;
+                } else {
+                    temp = temp->next;
+                }
+            }
+            if (isExist)
+                break;
+        }
+        return isExist;
+    }
+
+    void graphSearch(){
+
+    }
+
 };
+
+#endif //NETWORK_OPTIMIZATION_ADJ_LIST_H

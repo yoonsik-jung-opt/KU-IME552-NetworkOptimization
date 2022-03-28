@@ -5,7 +5,7 @@
 #ifndef NETWORK_OPTIMIZATION_HEAD_TAIL_POINTER_H
 #define NETWORK_OPTIMIZATION_HEAD_TAIL_POINTER_H
 
-#endif //NETWORK_OPTIMIZATION_HEAD_TAIL_POINTER_H
+
 
 #include <iostream>
 #include <vector>
@@ -121,3 +121,5 @@ public:
         }
     }
 };
+
+#endif //NETWORK_OPTIMIZATION_HEAD_TAIL_POINTER_H

@@ -1,10 +1,8 @@
 
 #include <vector>
 #include <fstream>
-#include <string>
 #include "head_tail_pointer.h"
 #include "adj_list.h"
-#include <filesystem>
 #include <sstream>
 
 void testHTPointer() {
@@ -29,7 +27,7 @@ void testHTPointer() {
     }
 }
 
-std::vector<std::tuple<int, int>> readEdges(std::string fname, int lines) {
+std::vector<std::tuple<int, int>> readEdges(std::string fname, int lines = -1) {
 //    std::cout << std::__fs::filesystem::current_path() << std::endl;
     std::vector<std::tuple<int, int>> edges;
     std::ifstream file(fname);
@@ -38,7 +36,17 @@ std::vector<std::tuple<int, int>> readEdges(std::string fname, int lines) {
     if (file.is_open()) {
         std::string s;
         if (lines == -1) {// read all
-
+            while (std::getline(file, s)) {
+                size_t pos = 0;
+                std::vector<int> nodes{};
+                pos = s.find(delim);
+                std::stringstream ss(s);
+                int temp;
+                while (ss >> temp) {
+                    nodes.push_back(temp);
+                }
+                edges.push_back(std::tuple<int, int>(nodes[0], nodes[1]));
+            }
         } else {
             for (int i = 0; i < lines; ++i) {
                 getline(file, s);
@@ -61,11 +69,11 @@ void testAdjList(int testcase = 1) {
     std::vector<std::tuple<int, int>> edges;
     switch (testcase) {
         case 1:
-            edges = readEdges("../test_edges.txt", 3);
+            edges = readEdges("../test_edges.txt");
             break;
 
         case 2:
-            edges = readEdges("../graph500-scale18-ef16_adj.edges.txt", 10);
+            edges = readEdges("../graph500-scale18-ef16_adj.edges.txt", 1000);
             break;
 
         case 3:
@@ -73,6 +81,7 @@ void testAdjList(int testcase = 1) {
             edges.emplace_back(3, 1);
             edges.emplace_back(4, 1);
             edges.emplace_back(6, 1);
+            break;
     }
 
     AdjacencyList adj = AdjacencyList();
@@ -82,6 +91,10 @@ void testAdjList(int testcase = 1) {
 
 //    adj.printNodes();
     adj.printEdges();
+//    adj.printNodes();
+//    std::cout << adj.checkIndegree(4) <<std::endl;
+
+    adj.topologicalOrdering();
 }
 
 int main() {
